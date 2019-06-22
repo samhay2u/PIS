@@ -1,0 +1,1 @@
+DELETE FROM PIS.users where user_id in ('jdoe', 'Mcsammer', 'staylor');

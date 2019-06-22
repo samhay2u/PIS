@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/pis-react/node_modules
+/pis-react/.pnp
+/pis-react.pnp.js
+
+# testing
+/pis-react/coverage
+
+# production
+/pis-react/build
+
+# misc
+/pis-react/.DS_Store
+/pis-react/.env.local
+/pis-react/.env.development.local
+/pis-react/.env.test.local
+/pis-react/.env.production.local
+
+/pis-react/npm-debug.log*
+/pis-react/yarn-debug.log*
+/pis-react/yarn-error.log*
