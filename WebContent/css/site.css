@@ -34,6 +34,11 @@ a:hover, a:focus {											/*		*/
 	font-weight: bolder;									/*		*/
 	font-size: 120%;										/*		*/
 }
+.card-deck a:hover, a:focus {											/*		*/
+	color: gray;											/*		*/
+	font-weight: normal;									/*		*/
+	font-size: 100%;										/*		*/
+}
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input, select, textarea {									/*		*/
