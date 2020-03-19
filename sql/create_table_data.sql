@@ -501,6 +501,16 @@ INSERT INTO `patienthx` (`MedRecNo`, `DateOfService`, `DoctorSeen`, `ProcedureID
 (200, '2010-01-28', 'Jones', 9000, '3800.00'),
 (200, '2010-01-29', 'Jones', 18000, '3800.00');
 
+DROP VIEW IF EXISTS TOPFIVE;
+
+CREATE VIEW TOPFIVE
+AS
+SELECT P.MedRecNo, P.Name, P.DOB, P.Address, P.Insurance, SUM(H.CostOfVist) AS TOTAL_COST 
+FROM patienthx AS H 
+INNER JOIN patients AS P ON H.MedRecNo = P.MedRecNo 
+GROUP BY P.MedRecNo 
+ORDER BY TOTAL_COST DESC, P.Name LIMIT 5;
+
  CREATE TABLE `users`(
    `user_id`            	varchar(225) NOT NULL, 
    `user_password`		   	varchar(225) NOT NULL,

@@ -15,7 +15,7 @@ public class DashboardDAO extends CommonDAO {
 			connect(); // Connect to the database
 
 			// Execute the Select Query
-			ResultSet result = getResultFromQuery("SELECT P.MedRecNo, P.Name, P.DOB, P.Address, P.Insurance, SUM(H.CostOfVist) AS TOTAL_COST FROM patienthx AS H INNER JOIN patients AS P ON H.MedRecNo = P.MedRecNo GROUP BY P.MedRecNo ORDER BY TOTAL_COST DESC, P.Name LIMIT 5");
+			ResultSet result = getResultFromQuery("SELECT * FROM TOPFIVE");
 
 			// Do I have a next row
 			while (result.next()) {

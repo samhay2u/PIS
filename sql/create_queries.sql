@@ -4,6 +4,42 @@ SELECT * FROM procedures where Cost BETWEEN 1000 AND 3000 ORDER BY Cost DESC;
 
 SELECT * FROM procedures where ProcedureName LIKE '%Shoulder%';
 
+SELECT * FROM procedures where Description  LIKE '%repair%' ORDER BY Cost DESC;
+
+-- i need all the patient ID and names where those patients had a proceedure witht a decription repair. 
+SELECT PT.MedRecNo, PT.Name, PS.ProcedureID, PS.Description FROM 
+PATIENTS AS PT 
+INNER JOIN PATIENTHX AS PX -- The INNER JOIN keyword selects records that have matching values in both tables.
+ON PT.MedRecNo = PX.MedRecNo
+INNER JOIN procedures AS PS
+ON PX.ProcedureID = PS.ProcedureID
+WHERE  Description  LIKE '%repair%' ORDER BY Cost DESC;
+
+-- i need all the proceedureID's and names and proceedure descriptions and proceedure costs where those patients had 
+-- a proceedure with a decription contain ing the word "repair" where the costs was over $1500 and under $2500.
+SELECT PT.MedRecNo, PT.Name, PS.Description, PS.Cost FROM 
+PATIENTS AS PT 
+INNER JOIN PATIENTHX AS PX -- The INNER JOIN keyword selects records that have matching values in both tables.
+ON PT.MedRecNo = PX.MedRecNo
+INNER JOIN procedures AS PS
+ON PX.ProcedureID = PS.ProcedureID
+WHERE  Description  LIKE '%repair%' 
+AND Costs BETWEEN $1500 AND $2500;  
+
+
+
+-- Each patient has what type of surgery and in March of 2016
+SELECT PT.MedRecNo, PT.Name, PS.ProcedureName, PS.Description, PX.DateOfService FROM 
+PATIENTS AS PT 
+INNER JOIN PATIENTHX AS PX -- The INNER JOIN keyword selects records that have matching values in both tables.
+ON PT.MedRecNo = PX.MedRecNo
+INNER JOIN procedures AS PS
+ON PX.ProcedureID = PS.ProcedureID
+WHERE EXTRACT(MONTH FROM PX.DateOfService) = 2
+AND EXTRACT(YEAR FROM PX.DateOfService) = 2016
+ORDER BY PT.Name;
+
+
 -- Find all patients that had surgery on February 1st 2016
 -- Type 1 INNER JOIN
 SELECT * FROM PATIENTS AS PT, PATIENTHX AS PX
