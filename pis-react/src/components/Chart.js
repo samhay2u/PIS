@@ -10,7 +10,7 @@ class Chart extends Component {
         var webServiceURL = window.webServiceURL;
         var pieChart = this.pieChart;
 
-        fetch(webServiceURL !== undefined? webServiceURL: "http://localhost:8080/PIS/rest/top5?userName=sam&password=tset")
+        fetch(webServiceURL !== undefined? webServiceURL: "http://localhost:8080/PIS/rest/top5?userName=Mcsammer&password=tset")
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
