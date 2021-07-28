@@ -1,0 +1,42 @@
+[
+    {
+        "address": "811 Birch street Philadelphia, PA 19012",
+        "dob": "09/22/1984",
+        "insurance": "UHC",
+        "medRecNo": "151",
+        "name": "Kristin Parker",
+        "totalCost": 10970.0
+    },
+    {
+        "address": "782 Maine Ave Philadelphia, PA 19014",
+        "dob": "04/04/1951",
+        "insurance": "Medicaid",
+        "medRecNo": "174",
+        "name": "Melissa Moore",
+        "totalCost": 10970.0
+    },
+    {
+        "address": "Oak ave Fine Acres, PA 19714",
+        "dob": "12/04/1945",
+        "insurance": "UHC",
+        "medRecNo": "125",
+        "name": "Brian Proks",
+        "totalCost": 10530.0
+    },
+    {
+        "address": "698 Red ave Folsom, PA 19084",
+        "dob": "03/14/2001",
+        "insurance": "Bluecross",
+        "medRecNo": "133",
+        "name": "Latoya Brown",
+        "totalCost": 10530.0
+    },
+    {
+        "address": "789 Jessup street Clifton, PA 19018",
+        "dob": "04/16/1998",
+        "insurance": "Aetna",
+        "medRecNo": "117",
+        "name": "Craig Ocean",
+        "totalCost": 10430.0
+    }
+]

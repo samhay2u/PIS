@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CanvasJSReact from "../lib/canvasjs.react";
-
+//https://canvasjs.com/docs/charts/chart-types/html5-pie-chart/
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var dataPoints = [];
 
@@ -9,8 +9,8 @@ class Chart extends Component {
     componentDidMount() {
         var webServiceURL = window.webServiceURL;
         var pieChart = this.pieChart;
-
-        fetch(webServiceURL !== undefined? webServiceURL: "http://localhost:8080/PIS/rest/top5?userName=Mcsammer&password=tset")
+        var tempurl = webServiceURL !== undefined? webServiceURL: "http://localhost:8080/PIS/rest/top5?userName=Mcsammer&password=tset";
+        fetch(tempurl)
             .then(function (response) {
                 return response.json();
             }).then(function (data) {

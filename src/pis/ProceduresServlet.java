@@ -78,7 +78,7 @@ public class ProceduresServlet extends CommonServlet {
 
 	public void maintain(String opr, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean isEdit = "edit".equals(opr);
-
+			
 		if (isEdit) {
 			ProcedureDAO procedureDAO = new ProcedureDAO();
 			request.setAttribute(PROCEDURE, procedureDAO.retreive(request.getParameter("ProcedureID")));
@@ -101,6 +101,16 @@ public class ProceduresServlet extends CommonServlet {
 		Object obj = request.getSession().getAttribute(SESSION_USER_TOKEN);
 
 		if (obj != null) {
+			/*
+			 * //String cost = request.getParameter("Cost"); //String billingCode =
+			 * request.getParameter("BillingCode"); try { Integer.parseInt(billingCode); }
+			 * catch (NumberFormatException e) { request.setAttribute(CommonServlet.MESSAGE,
+			 * "Billing code must be a number." ); // Get the message from the request
+			 * attribute
+			 * 
+			 * request.getRequestDispatcher("/WEB-INF/views/procedures/maintain.jsp").
+			 * forward(request, response); }
+			 */
 			String procedureId = request.getParameter("ProcedureID");
 			String message = "Data added successfully";
 			String opr = request.getParameter("opr");

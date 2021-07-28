@@ -86,8 +86,8 @@
 						<div class="error"><%=errorMessage%></div>
 						<!-- error Message  if wrong pw/un entered -->
 
-						<form method="post" action="/PIS/index.jsp" id="userForm">
-							<!-- ??????????????  -->
+						<form method="post" action="/PIS/index.jsp" id="userForm"> <!-- post is a type of action  now associated with and wait for  the submit button(s) down below on line 115and  118  -->
+							
 							<fieldset>
 								<!--  ?????????????? -->
 								<div class="form-group">
