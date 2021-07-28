@@ -10,7 +10,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import pis.model.DashboardDAO;
-import pis.model.PatientDAO;
+import pis.model.PISService;
 import pis.model.UserDAO;
 import pis.pojo.Patient;
 import pis.pojo.TopFive;
@@ -19,7 +19,7 @@ import pis.util.Factory;
 
 @Path("/")
 @Produces(MediaType.APPLICATION_JSON)
-public class PatientRESTService extends PatientDAO {
+public class PISRESTService extends PISService {
 
 	private void validateUser(String userName, String password) throws Exception {
 		User user = null;
@@ -45,7 +45,7 @@ public class PatientRESTService extends PatientDAO {
 	public List<Patient> retreiveAll(@QueryParam("userName") String userName, @QueryParam("password") String password) throws Exception {
 		validateUser(userName, password);
 
-		return super.retreiveAll();
+		return super.retreiveAllPatients();
 	}
 
 	@GET
@@ -53,7 +53,7 @@ public class PatientRESTService extends PatientDAO {
 	public Patient retreive(@PathParam("medRecNo") String medRecNo, @QueryParam("userName") String userName, @QueryParam("password") String password) throws Exception {
 		validateUser(userName, password);
 
-		return super.retreive(medRecNo);
+		return super.retreivePatient(medRecNo);
 	}
 
 	@GET

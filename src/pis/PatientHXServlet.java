@@ -22,10 +22,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pis.model.PatientDAO;
+import pis.model.PISService;
 import pis.model.PatientHXDAO;
 import pis.model.ProcedureDAO;
 import pis.pojo.PatientHX;
+import pis.util.Factory;
 
 /**
  * Servlet implementation class PatientHXServlet
@@ -83,18 +84,18 @@ public class PatientHXServlet extends CommonServlet {
 		boolean isEdit = "edit".equals(opr);
 		String medRecNo = request.getParameter("MedRecNo"), dateOfService = request.getParameter("DateOfService"), doctorSeen = request.getParameter("DoctorSeen"), procedureID = request.getParameter("ProcedureID");
 
-		PatientDAO patientDAO = new PatientDAO();
+		PISService pisService = Factory.getPISService(request);
 		ProcedureDAO procedureDAO = new ProcedureDAO();
 
 		if (isEdit) {
 			PatientHXDAO patientHXDAO = new PatientHXDAO();
 			request.setAttribute(PATIENTHX, patientHXDAO.retreive(medRecNo, dateOfService, doctorSeen, procedureID));
-			request.setAttribute(PATIENT, patientDAO.retreive(medRecNo));
+			request.setAttribute(PATIENT, pisService.retreivePatient(medRecNo));
 			request.setAttribute(PROCEDURE, procedureDAO.retreive(procedureID));
 		}
 
 		else {
-			request.setAttribute(PATIENTS, patientDAO.retreiveAll());
+			request.setAttribute(PATIENTS, pisService.retreiveAllPatients());
 			request.setAttribute(PROCEDURES, procedureDAO.retreiveAll());
 		}
 

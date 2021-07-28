@@ -7,7 +7,7 @@ import java.util.List;
 
 import pis.pojo.Patient;
 
-public class PatientDAO extends CommonDAO {
+class PatientDAO extends CommonDAO {
 
 	@Override
 	public boolean delete(String medRecNo) {

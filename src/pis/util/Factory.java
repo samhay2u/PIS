@@ -10,24 +10,24 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import pis.model.PatientDAO;
+import pis.model.PISService;
 
 public class Factory {
 
 	private final static String SECURITY_KEY_FACTORY = "PBKDF2WithHmacSHA512";
 	private final static int SALT_SIZE = 16, ITERATION_COUNT = 65536, KEY_LENGTH = 128;
 
-	private final static String SESSION_PATIENT_DAO = "sessionPatientDao";
+	private final static String SESSION_PIS_SERVICE = "sessionPISService";
 
-	public static PatientDAO getPatientDAO(HttpServletRequest request) {
+	public static PISService getPISService(HttpServletRequest request) {
 		HttpSession session = request.getSession(); // Get the session object
-		PatientDAO patientDAO = (PatientDAO) session.getAttribute(SESSION_PATIENT_DAO); // Get patient dao object if exists
+		PISService pisService = (PISService) session.getAttribute(SESSION_PIS_SERVICE); // Get patient dao object if exists
 
-		if (patientDAO == null) { // If patient dao does not exist
-			patientDAO = new PatientDAO(); // Create the object
-			session.setAttribute(SESSION_PATIENT_DAO, patientDAO); // Save it in the session
+		if (pisService == null) { // If PIS service does not exist
+			pisService = new PISService(); // Create the object
+			session.setAttribute(SESSION_PIS_SERVICE, pisService); // Save it in the session
 		}
-		return patientDAO; // Return patient dao object
+		return pisService; // Return PIS service object
 	}
 
 	private static String getStringOfBytes(byte[] bytes) {

@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pis.model.PatientDAO;
+import pis.model.PISService;
 import pis.pojo.Patient;
 import pis.util.Factory;
 
@@ -66,10 +66,10 @@ public class PatientsServlet extends CommonServlet {
 		String id = request.getParameter("MedRecNo");
 		String message = "Medical Record Number " + id + " deleted successfully";
 		String opr = request.getParameter("opr");
-		PatientDAO patientDAO = Factory.getPatientDAO(request);
+		PISService pisService = Factory.getPISService(request);
 
 		if ("delete".equals(opr)) {
-			if (!patientDAO.delete(id)) {
+			if (!pisService.deletePatient(id)) {
 				message = "Medical Record Number " + id + " delete failed";
 			}
 		}
@@ -81,16 +81,16 @@ public class PatientsServlet extends CommonServlet {
 		boolean isEdit = "edit".equals(opr);
 
 		if (isEdit) {
-			PatientDAO patientDAO = Factory.getPatientDAO(request);
-			request.setAttribute(PATIENT, patientDAO.retreive(request.getParameter("MedRecNo")));
+			PISService pisService = Factory.getPISService(request);
+			request.setAttribute(PATIENT, pisService.retreivePatient(request.getParameter("MedRecNo")));
 		}
 		request.getRequestDispatcher("/WEB-INF/views/patients/maintain.jsp").forward(request, response);
 	}
 
 	// Painting the entire data table
 	public void view(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PatientDAO patientDAO = Factory.getPatientDAO(request);
-		request.setAttribute(PATIENTS, patientDAO.retreiveAll());
+		PISService pisService = Factory.getPISService(request);
+		request.setAttribute(PATIENTS, pisService.retreiveAllPatients());
 		request.getRequestDispatcher("/WEB-INF/views/patients/view.jsp").forward(request, response);
 	}
 
@@ -106,18 +106,18 @@ public class PatientsServlet extends CommonServlet {
 			String message = "Data added successfully";
 			String opr = request.getParameter("opr");
 			Patient patient = new Patient(medRecNo, request.getParameter("Name"), request.getParameter("DOB"), request.getParameter("Address"), request.getParameter("Insurance"));
-			PatientDAO patientDAO = Factory.getPatientDAO(request);
+			PISService pisService = Factory.getPISService(request);
 
 			if ("addSubmit".equals(opr)) {
 
-				if (!patientDAO.add(patient)) {
+				if (!pisService.addPatient(patient)) {
 					message = "No Data has been added";
 				}
 			}
 
 			else if ("editSubmit".equals(opr)) {
 				message = "Medical Record Number " + medRecNo + " edited successfully";
-				if (!patientDAO.edit(patient)) {
+				if (!pisService.editPatient(patient)) {
 					message = "Medical Record Number " + medRecNo + " edit failed";
 				}
 			}
