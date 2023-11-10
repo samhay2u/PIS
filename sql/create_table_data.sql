@@ -511,6 +511,20 @@ INNER JOIN patients AS P ON H.MedRecNo = P.MedRecNo
 GROUP BY P.MedRecNo 
 ORDER BY TOTAL_COST DESC, P.Name LIMIT 5;
 
+DROP VIEW IF EXISTS TOPZIP;
+
+Create view TOPZIP
+as
+select zipcode, procedurename, cnt
+from 
+(
+SELECT  SUBSTRING(Address, LENGTH(address)-5, 6) AS zipCode, ProcedureName, count(*) as cnt
+FROM patients as pt, patientHX as hx, procedures as px
+     WHERE pt.MedRecNo = hx.MedRecNo 
+     And hx.ProcedureId = px.ProcedureID 
+     group By SUBSTRING(Address, LENGTH(address)-5, 6), ProcedureName
+) as a order by cnt desc;
+
  CREATE TABLE `users`(
    `user_id`            	varchar(225) NOT NULL, 
    `user_password`		   	varchar(225) NOT NULL,
@@ -554,6 +568,7 @@ VALUES
 'K',
 'Doe',
 'jdoe@gmail.com');
+
 
 
 
