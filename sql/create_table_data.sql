@@ -10,10 +10,10 @@ use PIS;
 
 set names utf8;
 
-DROP TABLE patienthx;
-DROP TABLE patients;
-DROP TABLE procedures;
-DROP TABLE users;
+DROP TABLE IF EXISTS patienthx;
+DROP TABLE IF EXISTS patients;
+DROP TABLE IF EXISTS procedures;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE `patients` (
   `MedRecNo` int(11) NOT NULL PRIMARY KEY,

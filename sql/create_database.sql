@@ -2,8 +2,8 @@
 use mysql;
 
 -- Drop User and database
-drop database PIS;
-drop user 'PIS'@'localhost';
+drop database IF EXISTS PIS;
+drop user IF EXISTS 'PIS'@'localhost';
 
 -- Create user PIS
 CREATE USER 'PIS'@'localhost' IDENTIFIED BY 'tset';
