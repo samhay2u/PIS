@@ -14,6 +14,7 @@ DROP TABLE IF EXISTS patienthx;
 DROP TABLE IF EXISTS patients;
 DROP TABLE IF EXISTS procedures;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS zip_city;
 
 CREATE TABLE `patients` (
   `MedRecNo` int(11) NOT NULL PRIMARY KEY,
@@ -519,7 +520,7 @@ select zipcode, procedurename, cnt
 from 
 (
 SELECT  SUBSTRING(Address, LENGTH(address)-5, 6) AS zipCode, ProcedureName, count(*) as cnt
-FROM patients as pt, patientHX as hx, procedures as px
+FROM patients as pt, patienthx as hx, procedures as px
      WHERE pt.MedRecNo = hx.MedRecNo 
      And hx.ProcedureId = px.ProcedureID 
      group By SUBSTRING(Address, LENGTH(address)-5, 6), ProcedureName
@@ -568,6 +569,40 @@ VALUES
 'K',
 'Doe',
 'jdoe@gmail.com');
+
+ CREATE TABLE `zip_city`
+ (`zip` int(5) NOT NULL,
+ `countyname` varchar(50) NOT NULL,
+ `state` char(2) NOT NULL,
+ `stcountyfp` int(5) NOT NULL,
+ `classfp` char(2) NOT NULL,
+ PRIMARY KEY (`zip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOAD DATA LOCAL INFILE '/tmp/zipStateCounty.csv'
+INTO TABLE zip_city
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+
+
+/*DROP VIEW IF EXISTS TOPZIP;
+
+Create view TOPZIP
+as
+select zipcode, procedurename, cnt
+from 
+(
+SELECT  SUBSTRING(Address, LENGTH(address)-5, 6) AS zipCode, ProcedureName, count(*) as cnt
+FROM patients as pt, patienthx as hx, procedures as px
+     WHERE pt.MedRecNo = hx.MedRecNo 
+     And hx.ProcedureId = px.ProcedureID 
+     group By SUBSTRING(Address, LENGTH(address)-5, 6), ProcedureName
+) as a order by cnt desc;
+
+ 
+*/
+ 
 
 
 
