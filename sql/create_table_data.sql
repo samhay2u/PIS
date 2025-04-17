@@ -579,7 +579,8 @@ VALUES
  PRIMARY KEY (`zip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOAD DATA LOCAL INFILE '/tmp/zipStateCounty.csv'
+-- LOAD DATA LOCAL INFILE '/tmp/zipStateCounty.csv'
+LOAD DATA LOCAL INFILE 'C:\\Users\\samha\\OneDrive\\Desktop\\SummerProjects\\PIS\\sql\\zipStateCounty.csv'
 INTO TABLE zip_city
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'

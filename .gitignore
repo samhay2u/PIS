@@ -21,3 +21,4 @@
 /pis-react/npm-debug.log*
 /pis-react/yarn-debug.log*
 /pis-react/yarn-error.log*
+/target/

@@ -13,6 +13,7 @@ CREATE DATABASE IF NOT EXISTS PIS;
 
 -- Give all priviledges to PIS user
 GRANT ALL PRIVILEGES ON PIS.* TO 'PIS'@'localhost';
+GRANT FILE ON *.* TO 'PIS'@'localhost';
 
 -- Provide proper access to create triggers
 set global log_bin_trust_function_creators=1;
